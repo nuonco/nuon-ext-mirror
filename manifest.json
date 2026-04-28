@@ -1,0 +1,16 @@
+{
+  "name": "mirror",
+  "description": "Mirror container images from Helm charts and Kubernetes manifests as Nuon external_image components",
+  "repo": "nuonco/nuon-ext-mirror",
+  "version": "0.0.1",
+  "tag": "0.0.1",
+  "installed_at": "2026-04-28T00:00:00Z",
+  "updated_at": "2026-04-28T00:00:00Z",
+  "binary": "nuon-ext-mirror",
+  "type": "binary",
+  "entrypoint": "",
+  "platform": "darwin/arm64",
+  "min_cli_version": "",
+  "requires_token": false,
+  "requires_org": false
+}

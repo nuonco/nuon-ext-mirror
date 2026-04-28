@@ -1,0 +1,55 @@
+# Multi-doc manifest exercising every registry kind we classify.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          image: 123456789012.dkr.ecr.us-west-2.amazonaws.com/myorg/api:abc123
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gar-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gar-svc
+  template:
+    metadata:
+      labels:
+        app: gar-svc
+    spec:
+      containers:
+        - name: gar-svc
+          image: us-central1-docker.pkg.dev/my-gcp-project/my-repo/my-image:v2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acr-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: acr-svc
+  template:
+    metadata:
+      labels:
+        app: acr-svc
+    spec:
+      containers:
+        - name: acr-svc
+          image: mycompany.azurecr.io/myteam/myapp:1.2.3

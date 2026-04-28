@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup
+spec:
+  schedule: "@daily"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: backup
+              # Concrete public image reference.
+              image: postgres:15.5-alpine
+              command: ["/bin/sh", "-c", "pg_dump ..."]

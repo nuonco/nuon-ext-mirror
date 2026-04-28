@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "sample-app.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount | default 1 }}
+  selector:
+    matchLabels:
+      app: {{ include "sample-app.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "sample-app.name" . }}
+    spec:
+      initContainers:
+        # Fully templated; scanner should skip this.
+        - name: init
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      containers:
+        # Fully templated; scanner should skip this.
+        - name: main
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+        # Concrete reference inside a Helm template — should be picked up.
+        - name: metrics
+          image: prom/prometheus:v2.48.0
+
+        # Concrete reference quoted; should be picked up.
+        - name: tracing
+          image: "otel/opentelemetry-collector-contrib:0.96.0"

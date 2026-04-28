@@ -1,0 +1,22 @@
+# Helm values that exercise both the `image.repository`/`image.tag` block
+# pattern and a flat `image:` field.
+
+image:
+  repository: nginx
+  tag: "1.25"
+  pullPolicy: IfNotPresent
+
+sidecar:
+  image: quay.io/jetstack/cert-manager-controller:v1.14.0
+
+worker:
+  image:
+    registry: ghcr.io
+    repository: example/worker
+    tag: v2.3.4
+
+# Image-as-mapping with an explicit digest (no tag).
+auditor:
+  image:
+    repository: docker.io/library/busybox
+    digest: sha256:0000000000000000000000000000000000000000000000000000000000000000

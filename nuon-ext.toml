@@ -1,0 +1,7 @@
+[extension]
+name = "mirror"
+description = "Mirror container images from Helm charts and Kubernetes manifests as Nuon external_image components"
+
+[extension.auth]
+requires_token = false
+requires_org = false
